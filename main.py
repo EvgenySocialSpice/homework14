@@ -14,7 +14,7 @@ def get_value_from_db(sql):
 
 def search_by_title(title):
     sql = f'''
-            SELECT title, country, release_year, genre, description
+            SELECT title, country, release_year, listed_in, description
             FROM netflix
             WHERE title = '{title}'
             ORDER BY release_year DESC
