@@ -25,7 +25,7 @@ def search_by_title(title):
         return dict(item)
 
 
-@app.get("/movie/<title>")
+@app.get("/movie/<title>/")
 def search_by_title_view(title):
     result = search_by_title(title=title)
     return app.response_class(
@@ -35,7 +35,7 @@ def search_by_title_view(title):
     )
 
 
-@app.get("/movie/<int:year1>/to/<int:year2>")
+@app.get("/movie/<int:year1>/to/<int:year2>/")
 def search_by_release_year_view(year1, year2):
     year1 = int(year1)
     year2 = int(year2)
@@ -56,7 +56,7 @@ def search_by_release_year_view(year1, year2):
     )
 
 
-@app.get("/rating/<rating>")
+@app.get("/rating/<rating>/")
 def search_by_rating_view(rating):
     my_dict = {
         "children": ("G", "G"),
@@ -79,13 +79,13 @@ def search_by_rating_view(rating):
     )
 
 
-@app.get("/genre/<genre>")
+@app.get("/genre/<genre>/")
 def search_by_genre_view(genre):
     sql = f'''
                 SELECT *
                 FROM netflix
                 WHERE listed_in LIKE %'{genre}'
-                ORDER BY release_year DISC
+                ORDER BY release_year DESC
                 LIMIT 10
             '''
     result = []
@@ -130,10 +130,10 @@ def step_6(typ, year, genre):
                 AND listed_in LIKE '%{genre}%'
             '''
     result = []
-    for item in get_value_from_db(sql=sql):
+    for item in get_value_from_db(sql):
         result.append(dict(item))
 
-    return result
+    return json.dumps(result, ensure_ascii=False, indent=4)
 
 
 if __name__ == '__main__':
