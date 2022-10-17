@@ -84,7 +84,7 @@ def search_by_genre_view(genre):
     sql = f'''
                 SELECT *
                 FROM netflix
-                WHERE listed_in LIKE %'{genre}'
+                WHERE listed_in LIKE '{genre}'
                 ORDER BY release_year DESC
                 LIMIT 10
             '''
