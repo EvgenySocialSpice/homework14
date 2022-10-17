@@ -101,9 +101,9 @@ def search_by_genre_view(genre):
 
 def search_by_double_name(name1, name2):
     sql = f'''
-                SELECT cast
+                SELECT 'cast'
                 FROM netflix
-                WHERE cast LIKE %'{name1}'% AND cast LIKE %'{name2}'%
+                WHERE 'cast' LIKE '{name1}' AND 'cast' LIKE '{name2}'
             '''
     result = []
 
@@ -118,7 +118,7 @@ def search_by_double_name(name1, name2):
         if value >= 2:
             result.append(key)
 
-    return json.dumps(result, ensure_ascii=False, indent=4)
+    return result
 
 
 def step_6(typ, year, genre):
@@ -137,6 +137,7 @@ def step_6(typ, year, genre):
 
 
 if __name__ == '__main__':
+    print(search_by_double_name('Rose McIver', 'Ben Lamb'))
     app.run(
         host='0.0.0.0',
         port=8080,
