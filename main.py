@@ -101,9 +101,9 @@ def search_by_genre_view(genre):
 
 def search_by_double_name(name1, name2):
     sql = f'''
-                SELECT "cast"
+                SELECT cast
                 FROM netflix
-                WHERE "cast" LIKE %'{name1}'% AND "cast" LIKE %'{name2}'%
+                WHERE cast LIKE %'{name1}'% AND cast LIKE %'{name2}'%
             '''
     result = []
 
